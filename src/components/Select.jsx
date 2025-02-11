@@ -23,7 +23,7 @@ const Select = React.forwardRef(function Select({
                 id={id}
                 {...props}
             >
-                {options.map((option) => (
+                {options?.map((option) => (
                     <option key={option} value={option}>
                         {option}
                     </option>
