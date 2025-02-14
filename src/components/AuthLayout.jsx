@@ -10,12 +10,6 @@ export default function Protected({children, authentication = true}) {
 
     useEffect(() => {
 
-        //  if(authStatus===true){
-        //     navigate("/")
-        //   } else if(authStatus===false){
-        //     navigate("/login")
-        //   }
-
         if(authentication && authStatus !== authentication){
             navigate("/login")
         } else if(!authentication && authStatus !== authentication){
