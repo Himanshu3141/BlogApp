@@ -16,15 +16,15 @@ function Home() {
     if (posts.length === 0) {
         return (
             <div className="w-full pt-6 pb-4 text-center">
-                <Container>
-                    <div className="flex flex-wrap justify-center items-center min-h-[70vh]">
-                        <div className="p-4 w-full max-w-md bg-white rounded-xl shadow-lg">
-                            <h1 className="text-2xl font-bold text-gray-800">
-                                Login to read posts
-                            </h1>
-                        </div>
-                    </div>
-                </Container>
+            <Container>
+                <div className="flex flex-wrap justify-center items-center min-h-[70vh]">
+                <div className="p-4 w-full max-w-md bg-white rounded-xl shadow-lg">
+                    <a href="/login" className="text-2xl font-bold text-gray-800 hover:underline">
+                    Login to read posts
+                    </a>
+                </div>
+                </div>
+            </Container>
             </div>
         );
     }
