@@ -5,23 +5,23 @@ import { Client, ID, Databases, Storage, Query } from "appwrite";
 export class Service {
     client = new Client();
     databases;
-    storage;
+    bucket;
 
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client);
-        this.storage = new Storage(this.client);
+        this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}) {
+    async createPost({title,slug,content, featuredImage, status, userId}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
-                {
+                 {
                     title,
                     content,
                     featuredImage,
@@ -59,7 +59,7 @@ export class Service {
                 conf.appwriteCollectionId,
                 slug
             );
-            return true;
+            return true
         } catch (error) {
             console.log("Appwrite service :: deletePost :: error", error);
             return false;
@@ -84,7 +84,7 @@ export class Service {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                queries
+                queries,
             );
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error", error);
@@ -95,7 +95,7 @@ export class Service {
     // file upload service
     async uploadFile(file) {
         try {
-            return await this.storage.createFile(
+            return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
                 file
@@ -108,7 +108,7 @@ export class Service {
 
     async deleteFile(fileId) {
         try {
-            await this.storage.deleteFile(
+            await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
             );
@@ -120,7 +120,7 @@ export class Service {
     }
 
     getFilePreview(fileId) {
-        return this.storage.getFilePreview(
+        return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
         );
