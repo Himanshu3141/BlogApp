@@ -2,8 +2,8 @@ import React, { useId } from 'react';
 
 const Select = React.forwardRef(function Select({
     label,
-    options = [],
-    className = "",
+    options,
+    className,
     ...props
 }, ref) {
     const id = useId();
